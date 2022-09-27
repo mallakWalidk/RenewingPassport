@@ -1,0 +1,109 @@
+<!-- <app-header></app-header> -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+  
+          <div class="section-title">
+            <h2>Contact US</h2>
+            <p>{{this.home.contactUs.header1}}</p>
+          </div>
+  
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-6">
+              <div class="info-box mb-4">
+                <i class="bx bx-map"></i>
+                <h3>Our Address</h3>
+                <p>{{this.home.contactUs.text1}}</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-3 col-md-6">
+              <div class="info-box  mb-4">
+                <i class="bx bx-envelope"></i>
+                <h3>Email Us</h3>
+                <p>{{this.home.contactInfo.email}}</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-3 col-md-6">
+              <div class="info-box  mb-4">
+                <i class="bx bx-phone-call"></i>
+                <h3>Call Us</h3>
+                <p>{{this.home.contactInfo.phoneNumber}}</p>
+              </div>
+            </div>
+  
+          </div>
+  
+          <div class="row" data-aos="fade-up" data-aos-delay="100">
+  
+            <div class="col-lg-6 ">
+              <img class="mb-4 mb-lg-0" src="../../../assets/images/{{this.home.contactUs.imagePath1}}" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen>
+            </div>
+  
+            <div class="col-lg-6">
+              <form class=" mat-form  p-3" [formGroup]="FeedbackForm">
+                <div class="info-box-title mb-4">
+                  <h1>Contact Us</h1>
+                </div>
+  
+                <div class="row p-2">
+                  <div class="col form-group ">
+                    <mat-form-field >
+                    <input type="text" matInput name="name" class="form-control " id="name" placeholder="Your Name" formControlName="createdBy">
+                    <mat-error *ngIf="FeedbackForm.controls['createdBy'].hasError('required') ">
+                     Enter your name
+                    </mat-error>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="col form-group " >
+                    <mat-form-field class="example-full-widh" >
+                    <input type="email" matInput class="form-control" name="email" id="email" placeholder="Your Email" formControlName="email" >
+                    <mat-error *ngIf="FeedbackForm.controls['email'].hasError('required') ">
+                      Email is <strong>required</strong>
+                    </mat-error>
+                    <mat-error *ngIf="FeedbackForm.controls['email'].hasError('email') ">
+                      Please enter a valid email address
+                    </mat-error>    
+                  </mat-form-field>
+                  </div>
+
+                  <div class="col form-group">
+                    <mat-form-field class="example-full-width" >
+                    <input type="text" matInput name="name" class="form-control" id="phoneNumber" placeholder="Your PhoneNumber" formControlName="phoneNumber" maxlength="14">
+                    <mat-error *ngIf="FeedbackForm.controls['phoneNumber'].hasError('required') ">
+                      PhoneNumber is <strong>required</strong>
+                    </mat-error>
+                  </mat-form-field>
+                  </div>
+
+                </div>
+                <div class="form-group p-2  ">
+                  <mat-form-field class="example-full-width" appearance="legacy" style="width:500px">
+                  <input type="text" matInput class="form-control" name="subject" id="subject" placeholder="Subject" formControlName="feedBack_Name" >
+                  <mat-error *ngIf="FeedbackForm.controls['feedBack_Name'].hasError('required') ">
+                    Subject is<strong>required</strong>
+                  </mat-error>
+                </mat-form-field>
+                </div>
+
+                <div class="form-group p-2 =">
+                  <mat-form-field class="example-full-width  " appearance="legacy" style="width:500px">
+                  <textarea class="form-control  " matInput name="message" rows="5" placeholder="Message" formControlName="message" ></textarea>
+                  <mat-error *ngIf="FeedbackForm.controls['message'].hasError('required') ">
+                    Write a message
+                  </mat-error>
+                </mat-form-field>
+                </div>
+                <button  class="btn btn-primary  ml-4" [disabled]="!FeedbackForm.valid" (click)="AddFeedback()" type="submit">Send Message</button>
+              </form>
+            </div>
+  
+          </div>
+  
+        </div>
+      </section><!-- End Contact Section -->
+  
+<!-- <app-footer></app-footer> -->

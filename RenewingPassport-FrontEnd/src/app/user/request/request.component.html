@@ -1,0 +1,300 @@
+<app-header></app-header>
+<div class="page-content page-container back-colour" id="page-content">
+  <div class="padding text-center">
+
+    <div class="d-grid gap-2 col-3 mx-auto mr-top" >
+      <button *ngIf="this.user.passports.status=='none'" class="btn btn-primary" type="button" (click)="requestNew()">Issuing for New Passport </button>
+     
+      <div *ngIf="this.user.passports.status=='UnPaid'">
+        <h2>Your Request has been Approved! Pay 50 JOD to get your passport ready</h2>
+        <button class="btn btn-success" type="button" (click)="openPayment()">Pay now </button>
+      </div>
+      <div *ngIf="this.user.passports.status=='Pending'">
+        <h2>Your Request still in progress <i class="fa-solid fa-user-clock"></i> </h2>
+
+      </div>
+      <div *ngIf="this.user.passports.status=='Expired'">
+        <h2>Your Passport is Expired <i class="fa-solid fa-hexagon-exclamation"></i> </h2>
+
+      </div>
+
+      <button class="btn btn-success" type="button" *ngIf="this.user.passports.status=='Renewed'&&this.user.passports.status!='Expired'" routerLink="/user/passport">Download Your Passport <i class="fa-solid fa-download"></i></button>
+
+      <button class="btn btn-primary" type="button" *ngIf="this.user.passports.status=='Renewed'||this.user.passports.status=='Expired'" (click)="requestRenew()">Request for Renewing a Passport</button>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
+
+<!-- Request New -->
+<ng-template #NewRequest>
+  <mat-dialog-content class="mat-typography ">
+    <h2 mat-dialog-title>Your Information</h2>
+
+    <form [formGroup]="RequestForm" class="example-form ">
+     
+
+      <mat-form-field class="example-full-width btn-edit col-4" appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input type="text" matInput formControlName="fullName" [(ngModel)]="data.fullName">
+        <mat-error *ngIf="RequestForm.controls['fullName'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-2 " appearance="outline">
+        <mat-label>gender</mat-label>
+        <mat-select formControlName="gender" matInput [(ngModel)]="data.gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+        <mat-error *ngIf="RequestForm.controls['gender'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>Birth date</mat-label>
+        <input type="date" matInput formControlName="userBD" [(ngModel)]="data.userBD">
+        <mat-error *ngIf="RequestForm.controls['userBD'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>Place Of Birth</mat-label>
+        <input type="text" matInput formControlName="placeOfBirth">
+        <mat-error *ngIf="RequestForm.controls['placeOfBirth'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>National Number</mat-label>
+        <input type="number" matInput formControlName="nationalNumber">
+        <mat-error *ngIf="RequestForm.controls['nationalNumber'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="RequestForm.controls['nationalNumber'].hasError('minLength(10)')">
+          <strong>National Number must be 10 number</strong>
+        </mat-error>
+
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>Mother Name</mat-label>
+        <input type="text" matInput formControlName="motherName">
+        <mat-error *ngIf="RequestForm.controls['motherName'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+<div class="row">
+      <div class=" border rounded p-2 btn-edit text-center form-left col-3">
+        <p class="fw-bold ">Personal Image</p>
+        <br />
+        <img src="../../../assets/images/{{data.userImagePath}}" width="100px" class="pb-4">
+        <input type="file" class="form-control" #file formControlName="userImagePath"
+          (change)="uploadImage(file.files,'userImagePath')">
+      </div>
+
+      <div class=" border rounded p-2 btn-edit text-center col-3">
+        <p class="fw-bold ">Upload a image of your Identity</p>
+        <br />
+        <input type="file" class="form-control" #file2 formControlName="identityPath"
+          (change)="uploadImage(file2.files,'identityPath')">
+      </div>
+    </div>
+      <!--
+              <div class=" border rounded p-2 col-3 btn-edit text-center">
+                <p class="fw-bold ">Second Image</p>
+                <br/>
+                <img src="../../../assets/images/{{p_data.imagePath2}}" width="100px" class="pb-4">
+                <input type="file" class="form-control" #file2 formControlName="imagePath2" (change)="uploadImage(file2.files,'imagePath2')" >
+                
+              </div>
+
+              <div class=" border rounded p-2 col-3 text-center">
+                <p class="fw-bold ">Third Image</p>
+                <br/>
+                <img src="../../../assets/images/{{p_data.imagePath3}}" width="100px" class="pb-4">
+                <input type="file" class="form-control" #file3 formControlName="imagePath3" (change)="uploadImage(file3.files,'imagePath3')" >
+
+              </div>  -->
+
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" class="text-center">
+    <div class="col-md-12 text-center mt-4">
+
+      <button class="btn btn-primary btn-edit" [disabled]="!RequestForm.valid" [mat-dialog-close]="true"
+        (click)="confirmRequest()">Confirm Request</button>
+      <button class="btn btn-secondary  " mat-dialog-close>Cancel</button>
+      <p class="form-text text-danger pt-1">By clicking confirm you will not be able to change your information.</p>
+
+    </div>
+  </mat-dialog-actions>
+
+</ng-template>
+
+<ng-template #RenewPassport>
+  <mat-dialog-content class="mat-typography ">
+    <h2 mat-dialog-title>Your Information</h2>
+
+    <form [formGroup]="RequestForm" class="example-form ">
+
+      <mat-form-field class="example-full-width btn-edit col-4" appearance="outline">
+        <mat-label>Full Name</mat-label>
+        <input type="text" matInput formControlName="fullName" [(ngModel)]="data.fullName">
+        <mat-error *ngIf="RequestForm.controls['fullName'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-2 " appearance="outline">
+        <mat-label>gender</mat-label>
+        <mat-select formControlName="gender" matInput [(ngModel)]="data.gender">
+          <mat-option value="Male">Male</mat-option>
+          <mat-option value="Female">Female</mat-option>
+        </mat-select>
+        <mat-error *ngIf="RequestForm.controls['gender'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>Birth date</mat-label>
+        <input type="date" matInput formControlName="userBD" [(ngModel)]="data.userBD">
+        <mat-error *ngIf="RequestForm.controls['userBD'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>Place Of Birth</mat-label>
+        <input type="text" matInput formControlName="placeOfBirth" [(ngModel)]="data.placeOfBirth">
+        <mat-error *ngIf="RequestForm.controls['placeOfBirth'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>National Number</mat-label>
+        <input type="number" matInput formControlName="nationalNumber" [(ngModel)]="data.nationalNumber">
+        <mat-error *ngIf="RequestForm.controls['nationalNumber'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+        <mat-label>Mother Name</mat-label>
+        <input type="text" matInput formControlName="motherName" [(ngModel)]="data.motherName">
+        <mat-error *ngIf="RequestForm.controls['motherName'].hasError('required')">
+          <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div class="row">
+        <div class=" border rounded p-2 btn-edit text-center col-3">
+          <p class="fw-bold ">Personal Image</p>
+          <br />
+          <img src="../../../assets/images/{{data.userImagePath}}" width="100px" class="pb-4">
+          <input type="file" class="form-control" #file formControlName="userImagePath"
+            (change)="uploadImage(file.files,'userImagePath')">
+        </div>
+
+
+        <div class=" border rounded p-2 btn-edit text-center col-3">
+          <p class="fw-bold ">Upload a image of your last passport</p>
+          <br />
+          <input type="file" class="form-control" #file2 formControlName="oldPassportPath"
+            (change)="uploadImage(file2.files,'oldPassportPath')">
+        </div>
+
+
+        <div class=" border rounded p-2 btn-edit text-center col-3">
+          <p class="fw-bold ">Upload a image of your Identity</p>
+          <br />
+          <input type="file" class="form-control" #file3 formControlName="identityPath"
+            (change)="uploadImage(file3.files,'identityPath')">
+        </div>
+      </div>
+
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end" class="text-center">
+    <div class="col-md-12 text-center mt-4">
+
+      <button class="btn btn-primary btn-edit" [disabled]="!RequestForm.valid" [mat-dialog-close]="true"
+        (click)="confirmRequest()">Confirm Request</button>
+      <button class="btn btn-secondary  " mat-dialog-close>Cancel</button>
+      <p class="form-text text-danger pt-1">By clicking confirm you will not be able to change your information.</p>
+
+    </div>
+  </mat-dialog-actions>
+
+</ng-template>
+
+<ng-template #Payment>
+    <mat-dialog-content class="mat-typography ">
+      <h2 mat-dialog-title>Your Information</h2>
+  
+      <form [formGroup]="PaymentForm" class="example-form ">
+       
+  
+        <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+          <mat-label>Visa Number</mat-label>
+          <input type="number" matInput formControlName="visa_Number">
+          <mat-error *ngIf="PaymentForm.controls['visa_Number'].hasError('required')">
+            <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+  
+       
+
+          <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+            <mat-label>Name on Visa</mat-label>
+            <input type="text" matInput formControlName="name_On_Visa" >
+            <mat-error *ngIf="PaymentForm.controls['name_On_Visa'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+            <mat-label>CVV</mat-label>
+            <input type="number" matInput formControlName="visa_Cvv" >
+            <mat-error *ngIf="PaymentForm.controls['visa_Cvv'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+            <mat-label>Month</mat-label>
+            <input type="number" matInput formControlName="month1">
+            <mat-error *ngIf="PaymentForm.controls['month1'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width btn-edit col-3" appearance="outline">
+            <mat-label>Year</mat-label>
+            <input type="number" matInput formControlName="year1">
+            <mat-error *ngIf="PaymentForm.controls['year1'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  
+      </form>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" class="text-center">
+      <div class="col-md-12 text-center mt-4">
+  
+        <button class="btn btn-primary btn-edit" [disabled]="!PaymentForm.valid" [mat-dialog-close]="true"
+          (click)="confirmPayment()">Confirm Request</button>
+        <button class="btn btn-secondary  " mat-dialog-close>Cancel</button>
+  
+      </div>
+    </mat-dialog-actions>
+  
+  </ng-template>

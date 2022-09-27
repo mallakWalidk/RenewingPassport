@@ -1,0 +1,87 @@
+
+  <div class="page-size">
+      <div class="card-body  hero" id="pdfTable" #pdfTable>
+        <div>
+
+          <table>
+            <tr>
+              <th colspan="6" style="text-align: center;">
+                <h3> Tha Hashemete Kingdom Of Jordan المملكة الاردنية الهاشمية</h3>
+              </th>
+            </tr>
+            <tr>
+              <th class="p-4"><img src="../../../assets/images/crown.png" width="70px"></th>
+              <th class="p-4">Country Code : 112211</th>
+              <th class="p-4">passport N.O : {{this.user.passports.passId}}</th>
+              <th class="p-4"><img src="../../../assets/images/{{this.user.passports.userImagePath}}" width="50"></th>
+            </tr>
+            <tr>
+              <td rowspan="5"><img src="../../../assets/images/{{this.user.passports.userImagePath}}" width="350" height="" style="
+              padding-right: 40px;"></td>
+              <td colspan="3">
+                Full Name :
+                <br>
+                <br>
+                <p class="h5 p-2"> {{this.user.passports.fullName}}</p></td>
+                <td colspan="2">
+                  National Number :
+                  <br>
+                  <br>
+                  <p class="h5 p-2"> {{this.user.passports.nationalNumber}}</p></td>
+            </tr>
+
+            <tr class="p-4">
+
+              <td colspan="3">
+
+                Birth Date : <p class="h5 p-2"> {{this.user.passports.userBD|date}}</p>
+              </td>
+              <td colspan="2">
+                <p style="text-align: right;">Palce Of Birth :</p>
+                <p class="h5" style="text-align: right;">{{this.user.passports.placeOfBirth}}</p>
+              </td>
+
+            </tr>
+            <tr>
+              <td colspan="3">
+                Gender : <p class="h5 p-2"> {{this.user.passports.gender}}</p>
+
+
+              </td>
+              <td colspan="2">
+                <p style="text-align: right;">Mother Name :</p>
+                <p class="h5" style="text-align: right;">{{this.user.passports.motherName}}</p>
+              </td>
+
+            </tr>
+
+            <tr>
+              <td colspan="3">
+                Date Of Issue:
+
+                <p class="h5 p-2"> {{this.user.passports.dateOfIssue|date}} </p>
+
+              </td>
+              <td colspan="2">
+                <p style="text-align: right;">Authority Place :</p>
+                <p class="h5" style="text-align: right;">{{this.user.passports.athority}}</p>
+              </td>
+
+            </tr>
+            <tr>
+              <td colspan="3">
+                Date Of Expired:
+
+                <p class="h5 p-2"> {{this.user.passports.dateOfExpiry|date}} </p>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+ 
+
+<button class="btn btn-primary waves-effect waves-light ml-4 button" (click)="downloadAsPDF()">Download Passport</button>
+<button class="btn btn-primary waves-effect waves-light ml-4 button" (click)="BackToHome()">Back to home</button>
+

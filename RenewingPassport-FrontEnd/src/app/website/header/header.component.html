@@ -1,0 +1,105 @@
+<!-- ======= Top Bar ======= -->
+<section id="topbar" class="d-flex align-items-center">
+  <div class="container d-flex justify-content-center justify-content-md-between">
+    <div class="contact-info d-flex align-items-center">
+      <i class="bi bi-envelope d-flex align-items-center"><a
+          href="mailto:{{this.home.contactInfo.email}}">{{this.home.contactInfo.email}}</a></i>
+      <i class="bi bi-phone d-flex align-items-center ms-4"><span>{{this.home.contactInfo.phoneNumber}}</span></i>
+    </div>
+    <div class="social-links d-none d-md-flex align-items-center">
+      <a href={{this.home.contactInfo.twitter}} class="twitter"><i class="bi bi-twitter"></i></a>
+      <a href={{this.home.contactInfo.facebook}} class="facebook"><i class="bi bi-facebook"></i></a>
+      <a href={{this.home.contactInfo.instagram}} class="instagram"><i class="bi bi-instagram"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= Header ======= -->
+<header *ngIf='!CheckUser && !CheckAdmin' id="header" class="d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <h1 class="logo"><a routerLink="/home">Passport<span>.</span></a></h1>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+
+        <li><a class="nav-link scrollto " href="#hero" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+        </li>
+        <li><a class="nav-link scrollto" href="#about" routerLinkActive="active" ariaCurrentWhenActive="page">About
+            Us</a></li>
+        <li><a class="nav-link scrollto" href="#contact" routerLinkActive="active" ariaCurrentWhenActive="page">Contact
+            Us</a></li>
+        <li><a class="nav-link scrollto" href="#Testimonial" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Testimonial</a></li>
+
+        <li><a routerLink="/auth/login" routerLinkActive="active" ariaCurrentWhenActive="page"><span>Login / Sign
+              up</span> </a>
+
+        </li>
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+
+<header *ngIf='CheckUser' id="header" class="d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <h1 class="logo"><a href="index.html">Passport<span>.</span></a></h1>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto " href="#hero" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+        </li>
+        <li><a class="nav-link scrollto" href="#about" routerLinkActive="active" ariaCurrentWhenActive="page">About
+            Us</a></li>
+        <li><a class="nav-link scrollto" href="#contact" routerLinkActive="active" ariaCurrentWhenActive="page">Contact
+            Us</a></li>
+        <li><a class="nav-link scrollto" href="#Testimonial" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Testimonial</a></li>
+        <li><a routerLink="/user/request"> Generate / Renew Passport</a></li>
+
+        <li class="dropdown"><a><span>My profile</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a routerLink="/user/UserProfile">My Profile</a></li>
+            <li><a (click)="logout()">Log Out</a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->
+
+<header *ngIf='CheckAdmin' id="header" class="d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+
+    <h1 class="logo"><a href="index.html">Passport<span>.</span></a></h1>
+
+    <nav id="navbar" class="navbar">
+      <ul>
+        <li><a class="nav-link scrollto " href="#hero" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a>
+        </li>
+        <li><a class="nav-link scrollto" href="#about" routerLinkActive="active" ariaCurrentWhenActive="page">About
+            Us</a></li>
+        <li><a class="nav-link scrollto" href="#contact" routerLinkActive="active" ariaCurrentWhenActive="page">Contact
+            Us</a></li>
+        <li><a class="nav-link scrollto" href="#Testimonial" routerLinkActive="active"
+            ariaCurrentWhenActive="page">Testimonial</a></li>
+        <li class="dropdown"><a><span>Admin Dashboard</span> <i class="bi bi-chevron-down"></i></a>
+          <ul>
+            <li><a routerLink="/admin">Dashboard</a></li>
+            <li><a (click)="logout()">Log Out</a></li>
+          </ul>
+        </li>
+
+      </ul>
+      <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+  </div>
+</header><!-- End Header -->

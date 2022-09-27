@@ -1,0 +1,323 @@
+<app-sidebar></app-sidebar>
+<div class="page-size">
+
+ 
+    <div class="pcoded-inner-content">
+      <!-- Main-body start -->
+      <div class="main-body">
+
+        <!-- Page-body start -->
+        <div class="page-body">
+
+          <div class="card">
+            <div class="card-header">
+              <h5>Contact Info</h5>
+            </div>
+
+            <div class="card-block table-border-style">
+              <div class="table-responsive">
+                <button class="btn btn-primary waves-effect waves-light mb-2" (click)="OpenCreate()"><i class="fa fa-plus"></i>New</button>
+                <table datatable [dtTrigger]="this.dtTrigger"  class="table table-hover table-manage">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">PhoneNmber</th>
+                     
+                      <th scope="col">Opreations</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of cInfo">
+                      <td>{{obj.contactInfoName}}</td>
+                      <td>{{obj.email}}</td>
+                      <td>{{obj.phoneNumber}}</td>
+                    
+                      <td>
+                        <button  class=" btn btn-inverse waves-effect waves-light" (click)="goToProfile(obj)"><i class="fa fa-info-circle" aria-hidden="true"></i>More Details</button>
+                       
+                        <button class="btn btn-primary waves-effect waves-light" (click)="OpenUpdate(obj)"><i
+                            class="fa fa-edit"></i></button>
+                        <button class="btn btn-danger waves-effect waves-light"
+                          (click)="deleteContact(obj.contactInfoId)"><i class="fa fa-trash"></i></button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Create Contact -->
+
+<ng-template #CreateContact>
+  <div class="row">
+    <h4 mat-dialog-title>Add New Contact Info</h4>
+    <mat-dialog-content>
+      <form [formGroup]="ContactInfo">
+        <div class="row">
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width "  appearance="outline">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput  formControlName="contactInfoName" placeholder="contact Info Name" >
+            <mat-error *ngIf="ContactInfo.controls['contactInfoName'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+
+        <div class="col-12">
+          <mat-form-field class="example-full-width btn-edit" appearance="outline" >
+            <mat-label>Email</mat-label>
+            <input type="text" matInput  formControlName="email" placeholder="Example@gmail.com" >
+            <mat-error *ngIf="ContactInfo.controls['email'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          
+          
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Phonenumber</mat-label>
+
+            <input type="text" matInput  formControlName="phoneNumber" placeholder="Phone Number" >
+
+            <mat-error *ngIf="ContactInfo.controls['phoneNumber'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+         
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Instagram</mat-label>
+            <input type="text" matInput  formControlName="instagram"  placeholder="Instegram Link">
+            <mat-error *ngIf="ContactInfo.controls['instagram'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          </div>
+       
+        <div class="col-12">
+
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Twitter</mat-label>
+            <input type="text" matInput  formControlName="twitter"  placeholder="twitter Link">
+            <mat-error *ngIf="ContactInfo.controls['twitter'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+         
+       
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Facebook</mat-label>
+
+            <input type="text" matInput  formControlName="facebook"  placeholder="Facebook Link">
+            <mat-error *ngIf="ContactInfo.controls['facebook'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+          </div>
+         
+
+      </div>
+      </form>
+
+    </mat-dialog-content>
+  </div>
+
+  <mat-dialog-actions align="end">
+    <div class="col-md-12 text-center">
+
+      <button class="btn btn-primary btn-edit" [mat-dialog-close]="true" (click)="newContact()">Create</button>
+      <button class="btn btn-secondary" mat-dialog-close>Cancel</button>
+    </div>
+  </mat-dialog-actions>
+
+</ng-template>
+
+<!-- Update Contact -->
+
+<ng-template #UpdateContact>
+
+  <h2 mat-dialog-title>Add New Contact Info</h2>
+  <mat-dialog-content class="mat-typography">
+    <form [formGroup]="ContactInfoUpdate">
+      <div class="row">
+
+        <div class="col-12">
+
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Name</mat-label>
+            <input type="text" matInput  [(ngModel)]="record.contactInfoName"
+              formControlName="contactInfoName">
+            <mat-error *ngIf="ContactInfoUpdate.controls['contactInfoName'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+
+          </mat-form-field>
+        </div>
+        <div class="col-12">
+
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="text" matInput  [(ngModel)]="record.email" formControlName="email">
+            <mat-error *ngIf="ContactInfoUpdate.controls['email'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Phonenumber</mat-label>
+            <input type="text" matInput  [(ngModel)]="record.phoneNumber"
+              formControlName="phoneNumber">
+            <mat-error *ngIf="ContactInfoUpdate.controls['phoneNumber'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+          
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Instagram</mat-label>
+            <input type="text" matInput  [(ngModel)]="record.instagram" formControlName="instagram">
+            <mat-error *ngIf="ContactInfoUpdate.controls['instagram'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12">
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Twitter</mat-label>
+            <input type="text" matInput  [(ngModel)]="record.twitter" formControlName="twitter">
+            <mat-error *ngIf="ContactInfoUpdate.controls['twitter'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field class="example-full-width btn-edit" appearance="outline">
+            <mat-label>Facebook</mat-label>
+            <input type="text" matInput  [(ngModel)]="record.facebook" formControlName="facebook">
+            <mat-error *ngIf="ContactInfoUpdate.controls['facebook'].hasError('required')">
+              <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+
+
+        </div>
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <div class="col-md-12 text-center">
+      <button class="btn btn-primary btn-edit" [mat-dialog-close]="true" (click)="updateContact()">Update</button>
+      <button class="btn btn-secondary " mat-dialog-close>Cancel</button>
+    </div>
+  </mat-dialog-actions>
+
+</ng-template>
+<!-- Update Contact -->
+
+<ng-template #DeleteContact>
+
+  <h2>Are You Sure you want to delete this item?</h2>
+  <button mat-dialog-close="yes" class="btn btn-danger waves-effect waves-light">Yes</button>
+  <button mat-dialog-close="no" class="btn btn-primary waves-effect waves-light">No</button>
+</ng-template>
+<ng-template #DetailsContact>
+  
+  
+  
+  <h5 class="card-header-text m-b-10">About Us</h5>
+
+
+  <div class="row" cdkScrollable>
+   
+  
+    
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-header-text">contact Info Name</h5>
+          <div class="card-block">
+            <p>{{selectedContact.contactInfoName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-header-text">Email</h5>
+          <div class="card-block">
+            <p>{{selectedContact.email}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-header-text">phone Number</h5>
+          <div class="card-block">
+            <p>{{selectedContact.phoneNumber}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-header-text">instagram</h5>
+          <div class="card-block">
+      <p>{{selectedContact.instagram}}</p>
+      </div>
+      </div>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-header-text">facebook</h5>
+          <div class="card-block">
+      <p>{{selectedContact.facebook}}</p>
+      </div>
+      </div>
+      </div>
+
+    </div>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-header-text">twitter</h5>
+          <div class="card-block">
+      <p>{{selectedContact.twitter}}</p>
+      </div>
+      </div>
+      </div>
+
+    </div>
+  
+
+    <div class="col-md-12 mt-4">
+      <button class="btn btn-primary waves-effect waves-light" (click)="OpenUpdate(selectedContact)"><i
+          class="fa fa-edit"></i></button>
+      <button class="btn btn-danger waves-effect waves-light " (click)="deleteContact(selectedContact.contactInfoId)"><i
+          class="fa fa-trash"></i></button>
+    </div>
+
+  </div>
+
+
+
+
+
+</ng-template>

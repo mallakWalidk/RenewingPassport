@@ -1,0 +1,28 @@
+.table-manage{
+  width: 1185px;
+  margin-top:20px;
+}
+.btn-edit{
+  margin-right:10px;
+}
+
+
+  
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.form-input{
+  margin-bottom:30px;
+  
+}
+
+.page-size{
+margin-left: 22%;
+
+}
+
+.form-left{
+margin-left:10px;
+
+}

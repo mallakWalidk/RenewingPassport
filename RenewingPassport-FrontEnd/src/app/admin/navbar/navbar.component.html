@@ -1,0 +1,49 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark  nav-class">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <i class="fab fa-github fa-2x mx-3 ps-1"></i>
+      </a>
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+        data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+        aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/admin/Users'>All Users</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/admin/Passports'>Passports</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink='/admin/Requests' >Requests</a>
+          </li>
+      
+        </ul>
+        <ul class="navbar-nav d-flex flex-row ms-auto me-3">
+          <li class="nav-item me-3 me-lg-0 dropdown">
+            <a class="nav-link dropdown-toggle" routerLink="/UserProfile" id="navbarDropdown1" role="button" data-mdb-toggle="dropdown"
+              aria-expanded="false">
+              <img src="../../../assets/images/{{this.admin.user[0].userImagePath}}" class="rounded-circle" height="40" style="padding-right: 20px;"
+                alt="" loading="lazy" />
+                My Profile
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown1">
+              <li><a class="dropdown-item" routerLink="/UserProfile">My profile</a></li>
+              <li><a class="dropdown-item" routerLink="/">Go to Home</a></li>
+              <li>
+                <hr class="dropdown-divider" />
+              </li>
+              <li>
+                <a class="dropdown-item" (click)="Logout()">Log out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->

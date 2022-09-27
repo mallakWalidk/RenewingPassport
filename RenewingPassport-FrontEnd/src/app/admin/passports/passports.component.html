@@ -1,0 +1,140 @@
+<app-sidebar></app-sidebar>
+
+<div class="page-size">
+  
+
+      <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+
+          <!-- Page-body start -->
+          <div class="page-body">
+            <div class="card">
+              <div class="card-header">
+                <h5>Passport</h5>
+              </div>
+
+              <div class="card-block table-border-style">
+               
+                  <div class="form-group row mt-2">
+
+
+                    <div class="col">
+                      Start Date
+                      <input class="form-control" placeholder="start Date" [value]="startdate" type="date"
+                        (change)="startValue($event)">
+                    </div>
+                    <div class="col">
+                      End Date
+                      <input class="form-control" placeholder="End Date" [value]="endDate" type="date"
+                        (change)="endValue($event)">
+
+                    </div>
+                    <div class="col">
+                      Status
+                      <select [value]="status" (change)="statusValue($event)"
+                        class="form-control form-control-primary ">
+                        <option value="">All Passport</option>
+                        <option value="Renewed">Renewed</option>
+                        <option value="Expired">Expired</option>
+                        <option value="Disabled">Disabled</option>
+
+                      </select>
+                    </div>
+                    <div class="col mt-3">
+                      <button type="submit " class="btn btn-primary waves-effect waves-light ml-1"
+                        (click)="search()">Search</button>
+                      <button class="btn btn-primary waves-effect waves-light" type="submit"
+                        (click)="clearFillter()">Clear Filter</button>
+                    </div>
+                  </div>
+                  <table id="mytable" class="table table-hover" >
+                    <thead>
+                      <tr>
+                        <th >Image</th>
+                        <th >Full Name</th>
+                        <th >National Number</th>
+                       
+                        <th >Gender</th>
+                        <th >Place of Birth</th>
+                        <th >Birthdate</th>
+                     
+                        <th >Date of Issue</th>
+                        <th >Date of Expiry</th>
+                        <th >Status</th>
+                       
+                      
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of Data" (click)="goToProfile(obj)">
+                        <td><img src="../../../assets/images/{{obj.userImagePath}}" (click)="goToProfile(obj)" width="70px" class="rounded-circle mb-3"></td>
+                   
+                        <td>{{obj.fullName}}</td>
+                        <td>{{obj.nationalNumber}}</td>
+                        
+                        <td>{{obj.gender}}</td>
+                        <td>{{obj.placeOfBirth}}</td>
+                        <td>{{obj.userBD|date}}</td>
+                        
+                        <td>{{obj.dateOfIssue|date}}</td>
+                        <td>{{obj.dateOfExpiry|date}}</td>
+                        <td>{{obj.status}}</td>
+                       
+                      
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          </div>
+          </div>
+          <ng-template #DetailsPassport>
+            <h4>Passport</h4>
+            
+              
+                <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-header-text">Deatails</h5>
+                    </div>
+                    <div class="card-block row">
+                     
+                      
+                      <div class="col-md-4"> 
+                        <img src="../../../assets/images/{{selectedRequest.userImagePath}}" class="col-md-12">
+                      </div>
+                     <div class="col-md-8">
+                      <div class="row">
+                      
+                        <div class="col-6 mb-3"><strong>Full Name :</strong> {{selectedRequest.fullName}}</div>
+                      <div class="col-6 mb-3"> <strong>UserName :</strong> {{selectedRequest.userName}}</div>
+                      <div class="col-6 mb-3"><strong>National Number :</strong> {{selectedRequest.nationalNumber}}</div>
+                      <div class="col-6 mb-3"> <strong>gender :</strong> {{selectedRequest.gender}}</div>
+                      <div class="col-6 mb-3"><strong>motherName :</strong> {{selectedRequest.motherName}}</div>
+                      <div class="col-6 mb-3"> <strong>placeOfBirth :</strong> {{selectedRequest.placeOfBirth}}</div>
+                      <div class="col-6 mb-3"> <strong>Birth Date :</strong> {{selectedRequest.userBD|date}}</div>
+                      <div class="col-6 mb-3"><strong>Address :</strong> {{selectedRequest.athority}}</div>
+                      <div class="col-6 mb-3"> <strong>Date Of Issue :</strong> {{selectedRequest.dateOfIssue|date}}</div>
+                      <div class="col-6 mb-3"> <strong>Date Of Expiry :</strong> {{selectedRequest.dateOfExpiry|date}}</div>
+                      <div class="col-12 mb-3"><strong>Status :</strong> {{selectedRequest.status}}</div>
+                      <div class="col-6 mb-3"> <strong>Old Passport Path :</strong><img src="../../../assets/images/{{selectedRequest.oldPassportPath}}" width="70">  </div>
+                      <div class="col-md-6 mb-3"> <strong>Identity Path :</strong><img src="../../../assets/images/{{selectedRequest.identityPath}}" width="70">  </div>
+                    
+                    </div>
+
+                     </div>
+                     
+                    </div>
+                  </div>
+                
+             
+         
+          
+          
+          
+          </ng-template>
+ 

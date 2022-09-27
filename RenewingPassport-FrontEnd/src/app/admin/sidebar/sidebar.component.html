@@ -1,0 +1,112 @@
+
+<!--Main Navigation-->
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <div class="text-center">
+          <img class="rounded-circle mb-3" height="130" src="../../../assets/images/{{this.admin.user[0].userImagePath}}" alt="User-Profile-Image">
+          <div class="user-details">
+              <h4 class="more-details ">{{this.admin.user[0].fullName}}</h4>
+          </div>
+      </div>
+      <br>
+      <br>
+<div class="DivWithScroll"> 
+      <a routerLink='/admin/dashboard' class="list-group-item list-group-item-action py-2 ripple"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+        <i class="fa-solid fa-house fa-fw me-3"></i>
+        <span>Home</span>
+      </a>
+
+      <h1 class="main-text mb-2">Manage Passport</h1>
+      <a routerLink='/admin/Passports' class="list-group-item list-group-item-action py-2 ripple"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+        <i class="fa-solid fa-passport fa-fw me-3"></i>
+        <span>All Passports Info</span>
+      </a>
+      <a routerLink='/admin/report' class="list-group-item list-group-item-action py-2 ripple"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+        <i class="fa-solid fa-passport fa-fw me-3"></i>
+        <span>Reports</span>
+      </a>
+
+
+      <a routerLink='/admin/Requests' class="list-group-item list-group-item-action py-2 ripple"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+        <i class="fa-solid fa-file-circle-exclamation fa-fw me-3"></i>
+        <span> Requests</span>
+      </a>
+
+
+      <h1 class="main-text mb-2">Manage Users</h1>
+        <a routerLink='/admin/Users' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-user-group fa-fw me-3"></i>
+          <span>All Users Info</span>
+        </a>
+
+        <a routerLink='/admin/ManageTestimonial' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-square-pen fa-fw me-3"></i>
+          <span>Manage Testimonial</span>
+        </a>
+
+        <a routerLink='/admin/ManageContactUsForm' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-comments fa-fw me-3"></i>
+          <span>FeedBack</span>
+        </a>
+
+        <i class="fa-solid fa-comment-pen"></i>
+
+        <h1 class="main-text mb-2">Manage Website</h1>
+        <a routerLink='/admin/ManageHome' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-house-circle-check fa-fw me-3"></i>
+          <span>Manage Home</span>
+        </a>
+
+        <a routerLink='/admin/ManageContactUs' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-comments fa-fw me-3"></i>
+          <span>Manage Contact Us</span>
+        </a>
+
+        <a routerLink='/admin/ManageContactInfo' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-address-book fa-fw me-3"></i>
+          <span>Manage Contact Info </span>
+        </a>
+
+        <a routerLink='/admin/ManageAboutUs' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-circle-info fa-fw me-3"></i>
+          <span>Manage About Us </span>
+        </a>
+
+        <a routerLink='/admin/ManageWebsitePages' class="list-group-item list-group-item-action py-2 ripple"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page">
+          <i class="fa-solid fa-pen fa-fw me-3"></i>
+          <span>Manage Website Pages</span>
+        </a>
+      </div>
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+
+<app-navbar></app-navbar>

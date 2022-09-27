@@ -1,0 +1,30 @@
+.table-manage{
+  width: 1300px;
+  margin-top:20px;
+}
+.btn-edit{
+  margin-right:10px;
+}
+
+input[type=text] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+  
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.form-input{
+  margin-bottom:30px;
+  
+}
+.page-size{
+margin-left: 22%;
+margin-right: 2%;
+}

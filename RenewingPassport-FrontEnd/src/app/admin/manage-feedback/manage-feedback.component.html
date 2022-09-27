@@ -1,0 +1,155 @@
+<app-sidebar></app-sidebar>
+<div class="page-size">
+  
+
+  <div class="pcoded-inner-content">
+    <!-- Main-body start -->
+    <div class="main-body">
+
+      <!-- Page-body start -->
+      <div class="page-body">
+        <div class="card">
+          <div class="card-header">
+            <h5>Feedbacks</h5>
+          </div>
+
+          <div class="card-block table-border-style">
+            
+
+              <table datatable [dtTrigger]="this.dtTrigger" class="table table-hover table-manage">
+                <thead>
+                  <tr>
+                    <th scope="col">Created by</th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Message</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Phone Number</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Operation</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let obj of Data">
+                    <td>{{obj.createdBy}}</td>
+                    <td>{{obj.feedBack_Name}}</td>
+                    <td><a routerLink="./admin/ManageContactUsForm" style="font-size: 18px;  font-weight: bold;"
+                        (click)="goToProfile(obj)">Show message ...</a></td>
+                    <td>{{obj.email}}</td>
+                    <td>{{obj.phoneNumber}}</td>
+                    <td>{{obj.message_Date|date}}</td>
+                    <td><button class="btn btn-danger" (click)="DeleteFeedback(obj.feedBackID)"><i
+                          class="fa fa-trash"></i></button> </td>
+
+                  </tr>
+                </tbody>
+              </table>
+            
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Delete -->
+  <ng-template #DeleteFeedbacks>
+
+    <h2>Are You Sure you want to delete this item?</h2>
+    <button mat-dialog-close="yes" class="btn btn-danger waves-effect waves-light">Yes</button>
+    <button mat-dialog-close="no" class="btn btn-primary waves-effect waves-light">No</button>
+  </ng-template>
+  <!-- Delete    -->
+
+  <ng-template #DetailsFeedbacks>
+
+
+    <h4>Feedbacks</h4>
+ <br>
+
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-header-text">Deatails</h5>
+      </div>
+      <div class="card-block row">
+
+
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-header-text">Created By</h5>
+              <div class="card-block">
+                <p style="font-size: medium;">{{selectedFeedBack.createdBy}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-header-text">Email</h5>
+              <div class="card-block">
+                <p style="font-size: medium;">{{selectedFeedBack.email}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-header-text">phone Number</h5>
+              <div class="card-block">
+                <p>{{selectedFeedBack.phoneNumber}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-header-text">Message Date</h5>
+              <div class="card-block">
+                <p style="font-size: medium;">{{selectedFeedBack.message_Date|date:'short'}}</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-header-text">Subject</h5>
+              <div class="card-block">
+                <p style="font-size: medium;">{{selectedFeedBack.feedBack_Name}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="card-header-text">Message</h5>
+              <div class="card-block">
+                <p style="font-size: medium;">{{selectedFeedBack.message}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-12 mt-4">
+          <button class="btn btn-danger " (click)="DeleteFeedback(selectedFeedBack.feedBackID)"><i
+              class="fa fa-trash"></i></button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </ng-template>

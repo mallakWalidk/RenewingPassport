@@ -1,0 +1,82 @@
+<app-sidebar></app-sidebar>
+<div class="page-size">
+
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+
+            <!-- Page-body start -->
+            <div class="page-body">
+                <div class="row ">
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h5>Report Monthly</h5>
+                            </div>
+
+                            <div class="card-block ">
+                                <div>
+                                    <button (click)="exportReportMonthly()"
+                                        class="btn btn-primary waves-effect waves-light  mb-2"><i
+                                            class="fa fa-file-excel-o"></i> Excel</button>
+                                    <table id="Monthly" datatable [dtOptions]="dtOption" [dtTrigger]="dtTriggers"
+                                        class="table table-border-style">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Count</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let obj of this.months">
+                                                <td>{{obj.issue}}</td>
+                                                <td>{{obj.status}}</td>
+                                                <td>{{obj.count}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h5>Annual Report</h5>
+                            </div>
+
+                            <div class="card-block table-border-style">
+                                <div>
+                                    <button (click)="exportReportYearly()"
+                                        class="btn btn-primary waves-effect waves-light  mb-2"> <i
+                                            class="fa fa-file-excel-o"></i> Excel</button>
+
+                                    <table id="Yearly" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                                        class="table  ">
+
+                                        <thead>
+                                            <tr>
+                                                <th class="col-4">Date</th>
+                                                <th class="col-4">Status</th>
+                                                <th class="col-4">Count</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let obj of this.years">
+                                                <td>{{obj.issue}}</td>
+                                                <td>{{obj.status}}</td>
+                                                <td>{{obj.count}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

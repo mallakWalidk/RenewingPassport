@@ -1,0 +1,128 @@
+<section id="Testimonial" class="about section-bg">
+    <div class="section-title">
+        <h2>Testimonial</h2>
+      </div>
+
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" >
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+
+        <button *ngIf="this.home.Testimonials.length>=1" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button *ngIf="this.home.Testimonials.length>=2" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button *ngIf="this.home.Testimonials.length>=3" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="3" aria-label="Slide 4"></button>
+        <button *ngIf="this.home.Testimonials.length>=4" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="4" aria-label="Slide 5"></button>
+        <button *ngIf="this.home.Testimonials.length>=5" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="5" aria-label="Slide 6"></button>
+        <button *ngIf="this.home.Testimonials.length>=6" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="6" aria-label="Slide 7"></button>
+        <button *ngIf="this.home.Testimonials.length>=7" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="7" aria-label="Slide 8"></button>
+        <button *ngIf="this.home.Testimonials.length>=8" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="8" aria-label="Slide 9"></button>
+        <button *ngIf="this.home.Testimonials.length>=9" type="button" data-bs-target="#carouselExampleDark"
+            data-bs-slide-to="9" aria-label="Slide 10"></button>
+    </div>
+
+    <div class="carousel-inner ">
+        <div *ngIf="this.home.Testimonials.length>0" class="col-md-4 carousel-item active" data-bs-interval="10000">
+            <div class="card p-3 text-center px-4" style="background-color:#f6f9fe; border:none; ">
+                <div class="user-image">
+                    <img src="../../../assets/images/{{this.home.Testimonials1[0].imagePath}}" class="rounded-circle"
+                        width="160px">
+                </div>
+                <div class="user-content mt-3 mb-3">
+                    <h2 class="mb-0">{{this.home.Testimonials1[0].senderName|uppercase}}</h2>
+                    <p >{{this.home.Testimonials1[0].message}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 carousel-item" *ngFor="let obj of this.home.Testimonials">
+            <div class="card p-3 text-center px-4"  style="background-color:#f6f9fe; border:none">
+                <div class="user-image">
+                    <img src="../../../assets/images/{{obj.imagePath}}" class="rounded-circle" width="160">
+                </div>
+                <div class="user-content mt-3 mb-3">
+                    <h2 class="mb-0">{{obj.senderName|uppercase}}</h2>
+                    <p  >{{obj.message}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<button class="btn btn-primary waves-effect waves-light ml-4 button"  (click)="TestimonialDailog()" type="submit">Write a Review</button>
+
+</section>
+
+
+<ng-template #CallTestimonialDailog>
+
+<section  class="contact" style="padding: 0px;">
+   
+        <div class="row" data-aos="fade-up" data-aos-delay="100" >
+            <div class="col-lg-12" >
+                <form class=" mat-form  pt-3" [formGroup]="CreateTestimonialForm">
+                    <div class="info-box-title mb-3">
+                        <h1>Testimonial</h1>
+                    </div>
+<br>
+                    <div class="row p-2">
+                        <div class="col form-group ">
+                            <mat-form-field appearance="standard">
+                                <mat-label style=" font-size: medium;">Name</mat-label>
+                                <input type="text" matInput name="name" class="form-control-lg " id="name" 
+                                    placeholder="Your Name" formControlName="senderName">
+                                <mat-error *ngIf="CreateTestimonialForm.controls['senderName'].hasError('required') ">
+                                    Enter your name
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col form-group ">
+                            <mat-label style=" font-size: medium;"> Upload your Image </mat-label>
+                                <div class="   p-2  text-center">
+                                   
+                                    <input type="file" class="form-control" #file (change)="uploadImage(file.files, 'imagePath')"/>
+                                  </div>
+                        </div>
+
+                    </div>
+                    <br>
+
+                    <div class="form-group p-2 =">
+                        <mat-form-field  class="example-full-width  " appearance="standard"style="width:500px">
+                            <mat-label style=" font-size: medium;">Message</mat-label>
+                            <textarea class="form-control  " matInput name="message" rows="5" placeholder="Message"
+                                formControlName="message"></textarea>
+                            <mat-error *ngIf="CreateTestimonialForm.controls['message'].hasError('required') ">
+                                Write a message
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <br>
+                    <hr>
+                    <button class="btn btn-primary  ml-4" [disabled]="!CreateTestimonialForm.valid" (click)="Create()"
+                        type="submit">Send Message</button>
+                        <br><br>
+                </form>
+            </div>
+
+        </div>
+   
+
+
+</section>
+</ng-template>

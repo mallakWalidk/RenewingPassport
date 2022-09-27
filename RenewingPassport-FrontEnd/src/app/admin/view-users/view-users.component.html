@@ -1,0 +1,62 @@
+<app-sidebar></app-sidebar>
+<div class="pcoded-inner-content">
+  <!-- Main-body start -->
+  <div class="main-body">
+
+    <!-- Page-body start -->
+    <div class="page-body">
+<div class="page-size">
+
+    
+
+
+            <div class="card">
+              <div class="card-header">
+                <h5>Users</h5>
+              </div>
+
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+
+                  <table datatable  [dtTrigger]="this.dtTrigger" class="table table-hover ">
+                    <thead>
+                      <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Full Name</th>
+                       
+                        <th scope="col">Email</th>
+                        <th scope="col">Gender</th>
+                       
+                        <th scope="col">Birthdate</th>
+                        
+                        <th scope="col">Place Of Birth</th>
+                        <th scope="col">National Number</th>
+                        
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of this.Data">
+                        <td><img class="rounded-circle" src="../../../assets/images/{{obj.userImagePath}}" width="70px"></td>
+                        <td>{{obj.fullName}}</td>
+                        
+                        <td>{{obj.user_Email}}</td>
+                        <td>{{obj.gender}}</td>
+                       
+                        <td>{{obj.userBD|date}}</td>
+                        
+                        <td>{{obj.placeOfBirth}}</td>
+                        <td>{{obj.nationalNumber}}</td>
+                      
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+ 
